@@ -21,37 +21,3 @@ function createPlayer() {
 
 	return player;
 }
-
-function playerMovement(stage, level) {
-	var x = player.x;
-	var y = player.y;
-
-	drawPlayerMap(stage, level, x, y);
-
-	Mousetrap.bind('up', function() {
-		player.x-=1;
-		drawPlayerMap(stage, level, x, y);
-	});
-	Mousetrap.bind('down', function() {
-		player.x+=1;
-		drawPlayerMap(stage, level, x, y);
-	});
-	Mousetrap.bind('left', function() {
-		player.y-=1;
-		drawPlayerMap(stage, level, x, y);
-	});
-	Mousetrap.bind('right', function() {
-		player.y+=1;
-		drawPlayerMap(stage, level, x, y);
-	});
-}
-
-function drawPlayerMap(stage, level, x, y) {
-	var top = 20 + (20 * x);
-	var left = 20 + (20 * y);
-
-	var block = new createjs.Shape();
-	block.graphics.beginFill('#ff0000').drawRect(left, top, 10, 10);
-	stage.addChild(block);
-
-}
