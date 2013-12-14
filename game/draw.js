@@ -46,16 +46,24 @@ draw = {
 						var directions = levelTools.canMove();
 
 						if (directions.up) {
+							var block = new createjs.Shape();
 							block.graphics.beginFill('#fff').drawRect(left + 10, up - 10, 10, 10);
+							stage.addChild(block);
 						}
 						if (directions.down) {
+							var block = new createjs.Shape();
 							block.graphics.beginFill('#fff').drawRect(left + 10, up + 30, 10, 10);
+							stage.addChild(block);
 						}
 						if (directions.left) {
+							var block = new createjs.Shape();
 							block.graphics.beginFill('#fff').drawRect(left - 10, up + 10, 10, 10);
+							stage.addChild(block);
 						}
 						if (directions.right) {
+							var block = new createjs.Shape();
 							block.graphics.beginFill('#fff').drawRect(left + 30, up + 10, 10, 10);
+							stage.addChild(block);
 						}
 					} else {
 						var color = '#fff';
