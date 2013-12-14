@@ -39,6 +39,8 @@ function update(event)
 	drawBackground();
 	drawMap();
 	stage.update();
+
+	playerMovement(stage, level);
 }
 
 function drawBackground()
