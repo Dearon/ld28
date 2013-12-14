@@ -69,7 +69,7 @@ function drawBackground()
 		{
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
 		}
-		//below
+		//down
 		if(checkBounds(ilevel, jlevel+1) && level[ilevel][jlevel+1])
 		{
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
