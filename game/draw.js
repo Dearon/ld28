@@ -1,8 +1,8 @@
 draw = {
 	update: function() {
 		this.background();
-		this.map();
-		this.mapOverview();
+		this.minimap();
+
 		stage.addChild(player.sprite);
 		stage.addChild(Enemy.sprite);
 	},
@@ -27,26 +27,27 @@ draw = {
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
 		}
 	},
-	map: function() {
-		$.each(level, function(index, item) {
-			$.each(item, function(innerIndex, innerItem) {
-				if (innerItem) {
-					var top = 20 + (20 * index);
-					var left = 20 + (20 * innerIndex);
+	minimap: function() {
+		var x = player.x - 1;
+		var y = player.y - 1;
 
+		for (var i = 0; i < 3; i++) {
+			for (var j = 0; j < 3; j++) {
+				left = (STAGE_WIDTH - 130) + (40 * i);
+				up = 20 + (40 * j);
+
+				if (level[y + j][x + i]) {
+					if ((x + i) == player.x && (y + j) == player.y) {
+						var color = '#ff0000';
+					} else {
+						var color = '#fff';
+					}
+					
 					var block = new createjs.Shape();
-					block.graphics.beginFill('#fff').drawRect(left, top, 10, 10);
+					block.graphics.beginFill(color).drawRect(left, up, 30, 30);
 					stage.addChild(block);
 				}
-			});
-		});
+			}
+		}
 	},
-	mapOverview: function() {
-		var top = 20 + (20 * player.y);
-		var left = 20 + (20 * player.x);
-
-		var block = new createjs.Shape();
-		block.graphics.beginFill('#ff0000').drawRect(left, top, 10, 10);
-		stage.addChild(block);
-	}
 }
