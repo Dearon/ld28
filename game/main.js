@@ -19,10 +19,10 @@ function init() {
 	drawMap();
 	createjs.Ticker.addEventListener("tick", update);
 
-	Player = new Character("4");
+	Player = new Character();
 	Player.x = STAGE_WIDTH/2;
 	Player.y = STAGE_HEIGHT/2;
-
+	Player.scaleX = 3; Player.scaleY = 3;
 	stage.addChild(Player);
 
 	stage.update();

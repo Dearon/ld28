@@ -5,7 +5,7 @@ function playerMovement(stage, level) {
 	var y = jlevel;
 
 	drawPlayer(stage, level, x, y);
-
+	checkBounds(ilevel-1, jlevel);
 	Mousetrap.bind('up', function() {
 		ilevel-=1;
 		drawPlayer(stage, level, x, y);

@@ -14,7 +14,7 @@
 			frames: {width: 32, height: 32, regX: 16, regY: 16},
 			animations: {
 				stand: [0,8,"stand"],
-				die: [2, 13, false]
+				die: [2, 18, false]
 			}
 		});
 		this.BitmapAnimation_initialize(localSpriteSheet);

@@ -20,7 +20,7 @@ function ContentManager() {
 
     // public method to launch the download process
     this.StartDownload = function () {
-        SetDownloadParameters(this.imgMonsterB, "../assets/images/player.png", handleImageLoad, handleImageError);
+        SetDownloadParameters(this.imgPlayer, "../assets/images/player.png", handleImageLoad, handleImageError);
 
 
     }
