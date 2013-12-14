@@ -23,7 +23,7 @@ var levelTools = {
 		return level;
 	},
 	spider: function(level, x, y, chance, chanceDecrease) {
-		level[y][x] = true;
+		level[y][x] = {};
 
 		var width = level.length;
 		var height = level[0].length;

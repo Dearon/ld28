@@ -2,18 +2,13 @@ draw = {
 	update: function() {
 		this.background();
 		this.minimap();
-		stage.addChild(player.sprite);
-		stage.addChild(Enemy.sprite);
-
-		var enemies = (enemyTools.hashLevelEnemies[player.y+" "+player.x].enemies);
-		for(var i = 0; i < enemies.length; i++)
-			stage.addChild(enemies[i].sprite);
+		this.player();
+		this.enemies();
 	},
 	background: function() {
 		stage.addChild(bg);
 		var bg = new createjs.Shape();
 		bg.graphics.beginFill('#BBB').drawRect(STAGE_WIDTH/4, STAGE_HEIGHT/4, 400, 300);
-		stage.addChild(bg);
 
 		var directions = levelTools.canMove();
 
@@ -29,6 +24,8 @@ draw = {
 		if (directions.right) {
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
 		}
+
+		stage.addChild(bg);
 	},
 	minimap: function() {
 		var x = player.x - 1;
@@ -76,4 +73,13 @@ draw = {
 			}
 		}
 	},
+	player: function() {
+		stage.addChild(player.sprite);
+	},
+	enemies: function() {
+		var enemies = level[player.y][player.x]['enemies'];
+		for(var i = 0; i < enemies.length; i++) {
+			stage.addChild(enemies[i].sprite);
+		}
+	}
 }

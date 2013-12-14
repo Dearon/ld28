@@ -3,6 +3,31 @@ var enemyTools = {
 	enemyTypes: ["witch"],
 	chanceSpawn: 1.0/6.0,
 
+	generateEnemies: function() {
+		for(var i = 0; i < level.length; i++)
+		{
+			for(var j = 0; j < level[0].length; j++)
+			{
+				if(level[i][j])
+				{
+					level[i][j]['enemies'] = [];
+					if(Math.random() > this.chanceSpawn) 
+					{
+						var numberOfEnemies = Math.ceil(Math.random()*6);
+						
+						for(var iEnemy = 0; iEnemy < numberOfEnemies; iEnemy++)
+						{
+							var x = STAGE_WIDTH/4 +  iEnemy*50;
+							var y = STAGE_WIDTH/4;
+							level[i][j].enemies.push(this.createEnemy(x,y,"witch"));
+						}
+					}
+				}
+
+			}
+		}
+	},
+
 	createEnemy: function(x, y, type) {
 		var enemySpriteSheet = new createjs.SpriteSheet({
 			framerate: 1,
@@ -26,33 +51,7 @@ var enemyTools = {
 		var rangeRand = Math.floor(Math.random()*this.enemyTypes.length);
 		return this.createEnemy(x,y,this.enemyTypes[rangeRand]);
 	},
-	generateEnemies: function() {
-		for(var i =0; i < level.length; i++)
-		{
-			for(var j = 0; j < level[0].length; j++)
-			{
-				if(level[i][j])
-				{	
-					this.hashLevelEnemies[i+" "+j] = {
-							enemies: [],
-					} 
-					if(Math.random() > this.chanceSpawn) 
-					{
-						var numberOfEnemies = Math.ceil(Math.random()*6);
-						
-						for(var iEnemy = 0; iEnemy < numberOfEnemies; iEnemy++)
-						{
-							var x = STAGE_WIDTH/4 +  iEnemy*50;
-							var y = STAGE_WIDTH/4;
-							this.hashLevelEnemies[i+" "+j].enemies.push(this.createEnemy(x,y,"witch"));
-						}
-					}
-				}
 
-			}
-		}
-		console.log("Do i even get here yall?");
-	},
 	enemyAttributes: function(type, spritesheet)
 	{
 		if(type ==="witch")
