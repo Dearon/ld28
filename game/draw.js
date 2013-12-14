@@ -1,3 +1,4 @@
+hashLevelEnemies = {};
 draw = {
 	update: function() {
 		this.background();
