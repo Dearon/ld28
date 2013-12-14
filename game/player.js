@@ -1,3 +1,5 @@
+
+
 function playerMovement(stage, level) {
 	var x = ilevel;
 	var y = jlevel;
@@ -30,5 +32,4 @@ function drawPlayer(stage, level, x, y) {
 	block.graphics.beginFill('#ff0000').drawRect(left, top, 10, 10);
 	stage.addChild(block);
 
-	stage.update();
 }

@@ -16,19 +16,15 @@ function init() {
 
 	level = levelGeneration(); 
 	ilevel = Math.floor(level.length/2); jlevel = Math.floor(level[0].length/2)	;
-	$.each(level, function(index, item) {
-		$.each(item, function(innerIndex, innerItem) {
-			if (innerItem) {
-				var top = 20 + (20 * index);
-				var left = 20 + (20 * innerIndex);
-
-				var block = new createjs.Shape();
-				block.graphics.beginFill('#fff').drawRect(left, top, 10, 10);
-				stage.addChild(block);
-			}
-		});
-	});
+	drawMap();
 	createjs.Ticker.addEventListener("tick", update);
+
+	Player = new Character("4");
+	Player.x = STAGE_WIDTH/2;
+	Player.y = STAGE_HEIGHT/2;
+
+	stage.addChild(Player);
+
 	stage.update();
 }
 
@@ -38,9 +34,10 @@ function update(event)
 	stage.removeAllChildren();
 	drawBackground();
 	drawMap();
-	stage.update();
-
+	stage.addChild(Player);
 	playerMovement(stage, level);
+
+	stage.update();
 }
 
 function drawBackground()
@@ -54,12 +51,12 @@ function drawBackground()
 	//Draw door ways.
 	if(ilevel <= level.length && ilevel >= 0 && jlevel <=level.length && jlevel >= 0)
 	{	
-		//left
+		//top
 		if(checkBounds(ilevel - 1, jlevel) && level[ilevel-1][jlevel])
 		{
-			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-100, 0, 100, 150);
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
 		}
-		//top
+		//left
 		if(checkBounds(ilevel, jlevel - 1) && level[ilevel][jlevel-1])
 		{
 			bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
