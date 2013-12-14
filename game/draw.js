@@ -5,7 +5,7 @@ draw = {
 		stage.addChild(player.sprite);
 		stage.addChild(Enemy.sprite);
 
-		var enemies = (enemyTools.hashLevelEnemies[player.x+" "+player.y].enemies);
+		var enemies = (enemyTools.hashLevelEnemies[player.y+" "+player.x].enemies);
 		for(var i = 0; i < enemies.length; i++)
 			stage.addChild(enemies[i].sprite);
 	},
