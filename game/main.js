@@ -23,4 +23,6 @@ function init() {
 	});
 
 	stage.update();
+
+	playerMovement(stage, level);
 }
