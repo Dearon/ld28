@@ -17,7 +17,15 @@ var enemyTools = {
 						
 						for(var k = 0; k < numberOfEnemies; k++)
 						{
-							level[i][j]['enemies'].push(this.createEnemy());
+							var enemy = this.createEnemy();
+							
+							if (k == 0) {
+								enemy['selected'] = true;
+							} else {
+								enemy['selected'] = false;
+							}
+
+							level[i][j]['enemies'].push(enemy);
 						}
 					}
 				}

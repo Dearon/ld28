@@ -83,6 +83,15 @@ draw = {
 			item.sprite.y = 210;
 
 			stage.addChild(item.sprite);
+
+			if (item.selected) {
+				var up = 135;
+				var left = 230 + (60 * index);
+
+				var arrow = new createjs.Shape();
+				arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
+				stage.addChild(arrow);
+			}
 		});
 	}
 }

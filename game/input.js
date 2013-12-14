@@ -14,4 +14,7 @@ function input() {
 	Mousetrap.bind('right', function() {
 		player.move('right');
 	});
+	Mousetrap.bind('ctrl', function() {
+		player.selectNextEnemy();
+	});
 }

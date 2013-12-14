@@ -34,6 +34,26 @@ function createPlayer() {
 					this.x += 1;
 				}
 			}
+		},
+		selectNextEnemy: function() {
+			var enemies = level[player.y][player.x]['enemies'];
+			var next = false;
+
+			if (enemies.length > 0) {
+				$.each(enemies, function(index, item) {
+					if (next) {
+						item['selected'] = true;
+						next = false;
+					} else if (item['selected']) {
+						item['selected'] = false;
+						next = true;
+					}
+				});
+
+				if (next) {
+					enemies[0]['selected'] = true;
+				}
+			}
 		}
 	}
 
