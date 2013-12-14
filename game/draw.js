@@ -42,6 +42,21 @@ draw = {
 				if (level[y + j][x + i]) {
 					if ((x + i) == player.x && (y + j) == player.y) {
 						var color = '#ff0000';
+
+						var directions = levelTools.canMove();
+
+						if (directions.up) {
+							block.graphics.beginFill('#fff').drawRect(left + 10, up - 10, 10, 10);
+						}
+						if (directions.down) {
+							block.graphics.beginFill('#fff').drawRect(left + 10, up + 30, 10, 10);
+						}
+						if (directions.left) {
+							block.graphics.beginFill('#fff').drawRect(left - 10, up + 10, 10, 10);
+						}
+						if (directions.right) {
+							block.graphics.beginFill('#fff').drawRect(left + 30, up + 10, 10, 10);
+						}
 					} else {
 						var color = '#fff';
 					}
