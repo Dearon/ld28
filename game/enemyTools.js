@@ -1,8 +1,8 @@
 var enemyTools = {
 	hashLevelEnemies: {},
 	enemyTypes: ["witch"],
-	chanceSpawn: 0.5,
-	
+	chanceSpawn: 1.0/6.0,
+
 	createEnemy: function(x, y, type) {
 		var enemySpriteSheet = new createjs.SpriteSheet({
 			framerate: 1,
@@ -33,10 +33,25 @@ var enemyTools = {
 			{
 				if(level[i][j])
 				{	
-					this.hashLevelEnemies[i+" "+j] = true;
+					this.hashLevelEnemies[i+" "+j] = {
+							enemies: [],
+					} 
+					if(Math.random() > this.chanceSpawn) 
+					{
+						var numberOfEnemies = Math.ceil(Math.random()*6);
+						
+						for(var iEnemy = 0; iEnemy < numberOfEnemies; iEnemy++)
+						{
+							var x = STAGE_WIDTH/4 +  iEnemy*50;
+							var y = STAGE_WIDTH/4;
+							this.hashLevelEnemies[i+" "+j].enemies.push(this.createEnemy(x,y,"witch"));
+						}
+					}
 				}
+
 			}
 		}
+		console.log("Do i even get here yall?");
 	},
 	enemyAttributes: function(type, spritesheet)
 	{

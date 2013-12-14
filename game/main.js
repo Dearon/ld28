@@ -6,7 +6,8 @@ function init() {
 	var canvas = document.getElementById("game");
 	stage = new createjs.Stage(canvas);
 
-	level = levelTools.create(); 
+	level = levelTools.create();
+	enemyTools.generateEnemies();
 	player = createPlayer();
 
 	Enemy = enemyTools.createRandomEnemy(300,300);

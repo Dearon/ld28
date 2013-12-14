@@ -1,11 +1,13 @@
-hashLevelEnemies = {};
 draw = {
 	update: function() {
 		this.background();
 		this.minimap();
-
 		stage.addChild(player.sprite);
 		stage.addChild(Enemy.sprite);
+
+		var enemies = (enemyTools.hashLevelEnemies[player.x+" "+player.y].enemies);
+		for(var i = 0; i < enemies.length; i++)
+			stage.addChild(enemies[i].sprite);
 	},
 	background: function() {
 		stage.addChild(bg);
