@@ -78,8 +78,8 @@ draw = {
 	},
 	enemies: function() {
 		var enemies = level[player.y][player.x]['enemies'];
-		for(var i = 0; i < enemies.length; i++) {
-			stage.addChild(enemies[i].sprite);
-		}
+		$.each(enemies, function(index, item) {
+			stage.addChild(item.sprite);
+		});
 	}
 }
