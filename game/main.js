@@ -1,31 +1,16 @@
-
 function init() {
 	//Globals
-	STAGE_WIDTH = 800; STAGE_HEIGHT = 600;
-	level = null; 
-	//Intialise level index for player movement.
-	
-	stage = null;
+	STAGE_WIDTH = 800;
+	STAGE_HEIGHT = 600;
 
 	var canvas = document.getElementById("game");
 	stage = new createjs.Stage(canvas);
 
-
-	
-	stage.update();
-
 	level = levelGeneration(); 
-	ilevel = Math.floor(level.length/2); jlevel = Math.floor(level[0].length/2)	;
-	drawMap();
+
+	player = createPlayer();
+	
 	createjs.Ticker.addEventListener("tick", update);
-
-	Player = new Character();
-	Player.x = STAGE_WIDTH/2;
-	Player.y = STAGE_HEIGHT/2;
-	Player.scaleX = 3; Player.scaleY = 3;
-	stage.addChild(Player);
-
-	stage.update();
 }
 
 function update(event)
@@ -34,7 +19,7 @@ function update(event)
 	stage.removeAllChildren();
 	drawBackground();
 	drawMap();
-	stage.addChild(Player);
+	stage.addChild(player.sprite);
 	playerMovement(stage, level);
 
 	stage.update();
@@ -42,33 +27,32 @@ function update(event)
 
 function drawBackground()
 {
-
 	stage.addChild(bg);
 	var bg = new createjs.Shape();
 	bg.graphics.beginFill('#BBB').drawRect(STAGE_WIDTH/4, STAGE_HEIGHT/4, 400, 300);
 	stage.addChild(bg);
 
 	//Draw door ways.
-	if(ilevel <= level.length && ilevel >= 0 && jlevel <=level.length && jlevel >= 0)
+	if(player.x <= level.length && player.x >= 0 && player.y <=level.length && player.y >= 0)
 	{	
 		//top
-		if(checkBounds(ilevel - 1, jlevel) && level[ilevel-1][jlevel])
+		if(checkBounds(player.x - 1, player.y) && level[player.x-1][player.y])
 		{
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
 		}
 		//left
-		if(checkBounds(ilevel, jlevel - 1) && level[ilevel][jlevel-1])
+		if(checkBounds(player.x, player.y - 1) && level[player.x][player.y-1])
 		{
 			bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
 		}
 		//down
-		if(checkBounds(ilevel+1, jlevel) && level[ilevel+1][jlevel])
+		if(checkBounds(player.x+1, player.y) && level[player.x+1][player.y])
 		{
 
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
 		}
 		//right
-		if(checkBounds(ilevel, jlevel+1) && level[ilevel][jlevel+1])
+		if(checkBounds(player.x, player.y+1) && level[player.x][player.y+1])
 		{
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
 		}
@@ -94,5 +78,3 @@ function drawMap()
 		});
 	});
 }
-
-
