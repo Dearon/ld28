@@ -15,7 +15,7 @@ function init() {
 	stage.update();
 
 	level = levelGeneration(); 
-	ilevel = Math.floor(level.length/2); jlevel = Math.floor(level.length/2)	;
+	ilevel = Math.floor(level.length/2); jlevel = Math.floor(level[0].length/2)	;
 	$.each(level, function(index, item) {
 		$.each(item, function(innerIndex, innerItem) {
 			if (innerItem) {
@@ -57,22 +57,23 @@ function drawBackground()
 		//left
 		if(checkBounds(ilevel - 1, jlevel) && level[ilevel-1][jlevel])
 		{
-			bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-100, 0, 100, 150);
 		}
 		//top
 		if(checkBounds(ilevel, jlevel - 1) && level[ilevel][jlevel-1])
 		{
-			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
-		}
-		//right
-		if(checkBounds(ilevel+1, jlevel) && level[ilevel+1][jlevel])
-		{
-			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
+			bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
 		}
 		//down
+		if(checkBounds(ilevel+1, jlevel) && level[ilevel+1][jlevel])
+		{
+
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
+		}
+		//right
 		if(checkBounds(ilevel, jlevel+1) && level[ilevel][jlevel+1])
 		{
-			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
 		}
 	}
 }
