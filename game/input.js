@@ -1,17 +1,17 @@
-function playerMovement(stage, level) {
+function input() {
 	var x = player.x;
 	var y = player.y;
 
 	Mousetrap.bind('up', function() {
-		player.x-=1;
+		player.move('up');
 	});
 	Mousetrap.bind('down', function() {
-		player.x+=1;
+		player.move('down');
 	});
 	Mousetrap.bind('left', function() {
-		player.y-=1;
+		player.move('left');
 	});
 	Mousetrap.bind('right', function() {
-		player.y+=1;
+		player.move('right');
 	});
 }

@@ -14,7 +14,7 @@ function init() {
 	// Draw any updates that have happened
 	createjs.Ticker.addEventListener("tick", update);
 	// Listen to any inputs
-	playerMovement(stage, level);
+	input();
 }
 
 function update(event)

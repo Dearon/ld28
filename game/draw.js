@@ -1,7 +1,6 @@
 draw = {
 	update: function() {
 		this.background();
-		this.checkBounds();
 		this.map();
 		this.mapOverview();
 		stage.addChild(player.sprite);
@@ -13,33 +12,20 @@ draw = {
 		bg.graphics.beginFill('#BBB').drawRect(STAGE_WIDTH/4, STAGE_HEIGHT/4, 400, 300);
 		stage.addChild(bg);
 
-		//Draw door ways.
-		if(player.x <= level.length && player.x >= 0 && player.y <=level.length && player.y >= 0)
-		{	
-			//top
-			if(this.checkBounds(player.x - 1, player.y) && level[player.x-1][player.y])
-			{
-				bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
-			}
-			//left
-			if(this.checkBounds(player.x, player.y - 1) && level[player.x][player.y-1])
-			{
-				bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
-			}
-			//down
-			if(this.checkBounds(player.x+1, player.y) && level[player.x+1][player.y])
-			{
-				bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
-			}
-			//right
-			if(this.checkBounds(player.x, player.y+1) && level[player.x][player.y+1])
-			{
-				bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
-			}
+		var directions = levelTools.canMove();
+
+		if (directions.up) {
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
 		}
-	},
-	checkBounds: function(i, j) {
-		return(i <= level.length && i >= 0 && j <=level.length && j >= 0)
+		if (directions.down) {
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, STAGE_HEIGHT, 100, -150);
+		}
+		if (directions.left) {
+			bg.graphics.beginFill('#AAA').drawRect(0, STAGE_HEIGHT/2-50, 200, 100);
+		}
+		if (directions.right) {
+			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH, STAGE_HEIGHT/2-50, -200, 100);
+		}
 	},
 	map: function() {
 		$.each(level, function(index, item) {
@@ -56,8 +42,8 @@ draw = {
 		});
 	},
 	mapOverview: function() {
-		var top = 20 + (20 * player.x);
-		var left = 20 + (20 * player.y);
+		var top = 20 + (20 * player.y);
+		var left = 20 + (20 * player.x);
 
 		var block = new createjs.Shape();
 		block.graphics.beginFill('#ff0000').drawRect(left, top, 10, 10);

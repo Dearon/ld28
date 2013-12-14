@@ -51,5 +51,40 @@ var levelTools = {
 		}
 
 		return level;
+	},
+	canMove: function() {
+		var x = player.x;
+		var y = player.y;
+
+		var directions = {
+			up: false,
+			down: false,
+			left: false,
+			right: false
+		};
+
+		if (y > 0 && y < level.length && x > 0 && x < level[0].length) {
+			if (level[y - 1][x]) {
+				directions['up'] = true;
+			}
+
+			if (y < (level.length - 1)) {
+				if (level[y + 1][x]) {
+					directions['down'] = true;
+				}
+			}
+
+			if (level[y][x - 1]) {
+				directions['left'] = true;
+			}
+
+			if (x < (level[0].length - 1)) {
+				if (level[y][x + 1]) {
+					directions['right'] = true;
+				}
+			}
+		}
+
+		return directions;
 	}
 }
