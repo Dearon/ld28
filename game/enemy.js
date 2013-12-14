@@ -1,4 +1,6 @@
+
 var enemyTypes = ["witch"];
+
 function createEnemy(x, y, type) {
 	var enemySpriteSheet = new createjs.SpriteSheet({
 		framerate: 1,
