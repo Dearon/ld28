@@ -1,30 +1,52 @@
+function createPlayer() {
+	var playerSpriteSheet = new createjs.SpriteSheet({
+		framerate: 1,
+		images: ["assets/images/player.png"],
+		frames: {width: 32, height: 32, regX: 16, regY: 16},
+		animations: {
+			stand: [0,8,"stand"],
+			die: [2, 13, false]
+		}
+	});
 
+	var playerSprite = new createjs.Sprite(playerSpriteSheet, "stand");
+	playerSprite.x = STAGE_WIDTH/2;
+	playerSprite.y = STAGE_HEIGHT/2;
+
+	var player = {
+		sprite: playerSprite,
+		x: Math.floor(level.length/2),
+		y: Math.floor(level[0].length/2)
+	}
+
+	return player;
+}
 
 function playerMovement(stage, level) {
-	var x = ilevel;
-	var y = jlevel;
+	var x = player.x;
+	var y = player.y;
 
-	drawPlayer(stage, level, x, y);
+	drawPlayerMap(stage, level, x, y);
 
 	Mousetrap.bind('up', function() {
-		ilevel-=1;
-		drawPlayer(stage, level, x, y);
+		player.x-=1;
+		drawPlayerMap(stage, level, x, y);
 	});
 	Mousetrap.bind('down', function() {
-		ilevel+=1;
-		drawPlayer(stage, level, x, y);
+		player.x+=1;
+		drawPlayerMap(stage, level, x, y);
 	});
 	Mousetrap.bind('left', function() {
-		jlevel-=1;
-		drawPlayer(stage, level, x, y);
+		player.y-=1;
+		drawPlayerMap(stage, level, x, y);
 	});
 	Mousetrap.bind('right', function() {
-		jlevel+=1;
-		drawPlayer(stage, level, x, y);
+		player.y+=1;
+		drawPlayerMap(stage, level, x, y);
 	});
 }
 
-function drawPlayer(stage, level, x, y) {
+function drawPlayerMap(stage, level, x, y) {
 	var top = 20 + (20 * x);
 	var left = 20 + (20 * y);
 
