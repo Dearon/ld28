@@ -9,6 +9,8 @@ function init() {
 	level = levelTools.create(); 
 	player = createPlayer();
 
+	Enemy = createRandomEnemy(300,300);
+
 	// Draw any updates that have happened
 	createjs.Ticker.addEventListener("tick", update);
 	// Listen to any inputs

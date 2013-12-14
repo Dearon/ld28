@@ -5,6 +5,7 @@ draw = {
 		this.map();
 		this.mapOverview();
 		stage.addChild(player.sprite);
+		stage.addChild(Enemy.sprite);
 	},
 	background: function() {
 		stage.addChild(bg);

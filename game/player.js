@@ -2,10 +2,10 @@ function createPlayer() {
 	var playerSpriteSheet = new createjs.SpriteSheet({
 		framerate: 1,
 		images: ["assets/images/player.png"],
-		frames: {width: 32, height: 32, regX: 16, regY: 16},
+		frames: {width: 96, height: 96, regX: 48, regY: 48},
 		animations: {
-			stand: [0,8,"stand"],
-			die: [2, 13, false]
+			stand: [0,7,"stand"],
+			die: [9, 18, false]
 		}
 	});
 
