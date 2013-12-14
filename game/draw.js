@@ -79,6 +79,9 @@ draw = {
 	enemies: function() {
 		var enemies = level[player.y][player.x]['enemies'];
 		$.each(enemies, function(index, item) {
+			item.sprite.x = 240 + (60 * index);
+			item.sprite.y = 210;
+
 			stage.addChild(item.sprite);
 		});
 	}

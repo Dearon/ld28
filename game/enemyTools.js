@@ -15,11 +15,9 @@ var enemyTools = {
 					{
 						var numberOfEnemies = Math.ceil(Math.random()*6);
 						
-						for(var iEnemy = 0; iEnemy < numberOfEnemies; iEnemy++)
+						for(var k = 0; k < numberOfEnemies; k++)
 						{
-							var x = STAGE_WIDTH/4 +  iEnemy*50;
-							var y = STAGE_WIDTH/4;
-							level[i][j].enemies.push(this.createEnemy(x,y,"witch"));
+							level[i][j]['enemies'].push(this.createEnemy());
 						}
 					}
 				}
@@ -27,11 +25,15 @@ var enemyTools = {
 			}
 		}
 	},
-
 	createEnemy: function(x, y, type) {
-		var enemySpriteSheet = new createjs.SpriteSheet({
+		var enemy = this.witch();
+
+		return enemy;
+	},
+	witch: function() {
+		var witchSpriteSheet = new createjs.SpriteSheet({
 			framerate: 1,
-			images: ["assets/images/"+type+".png"],
+			images: ["assets/images/witch.png"],
 			frames: {width: 96, height: 96, regX: 48, regY: 48},
 			animations: {
 				stand: [0,8,"stand"],
@@ -39,35 +41,14 @@ var enemyTools = {
 			}
 		});
 
-		var enemySprite = new createjs.Sprite(enemySpriteSheet, "stand");
-		enemySprite.x = x; 
-		enemySprite.y = y;
+		var witchSprite = new createjs.Sprite(witchSpriteSheet, "stand");
 
-		var enemy = this.enemyAttributes(type, enemySprite)
-
-		return enemy;
-	},
-	createRandomEnemy: function(x, y) {
-		var rangeRand = Math.floor(Math.random()*this.enemyTypes.length);
-		return this.createEnemy(x,y,this.enemyTypes[rangeRand]);
-	},
-
-	enemyAttributes: function(type, spritesheet)
-	{
-		if(type ==="witch")
-		{
-			return attrb = {
-				sprite: spritesheet,
-				x: spritesheet.x,
-				y: spritesheet.y,
-				hp: 50,
-				dmg: 10
-			}
+		var witch = {
+			sprite: witchSprite,
+			hp: 50,
+			damage: 10
 		}
+
+		return witch;
 	}
 };
-
-
-
-
-
