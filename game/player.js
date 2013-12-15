@@ -18,6 +18,7 @@ function createPlayer() {
 		sprite: playerSprite,
 		x: Math.floor(level.length/2),
 		y: Math.floor(level[0].length/2),
+		hp: 100,
 		damage: 25,
 		move: function(direction) {
 			var directions = levelTools.canMove();
@@ -83,6 +84,11 @@ function createPlayer() {
 				//Attack player animation.
 				player.sprite.gotoAndPlay("attack");
 
+
+				$.each(enemies, function(index, item) {
+					item.sprite.gotoAndPlay('attack');
+					player.hp -= enemy.damage;
+				});
 			}
 		}
 	}

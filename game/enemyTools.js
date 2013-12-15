@@ -45,11 +45,14 @@ var enemyTools = {
 			frames: {width: 96, height: 96, regX: 48, regY: 48},
 			animations: {
 				stand: [0,8,"stand"],
-				attack: [9, 16, "stand"]
+				attack: [9, 15, "stand"]
 			}
 		});
 
 		var witchSprite = new createjs.Sprite(witchSpriteSheet, "stand");
+		witchSprite.onAnimationEnd = function() {
+			console.log('test');
+		}
 
 		var witch = {
 			sprite: witchSprite,
