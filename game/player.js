@@ -17,6 +17,7 @@ function createPlayer() {
 		sprite: playerSprite,
 		x: Math.floor(level.length/2),
 		y: Math.floor(level[0].length/2),
+		damage: 25,
 		move: function(direction) {
 			var directions = levelTools.canMove();
 
@@ -52,6 +53,31 @@ function createPlayer() {
 
 				if (next) {
 					enemies[0]['selected'] = true;
+				}
+			}
+		},
+		attackEnemy: function() {
+			var enemies = level[player.y][player.x]['enemies'];
+
+			if (enemies.length > 0) {
+				var enemy = {};
+				var enemyIndex = 0;
+
+				$.each(enemies, function(index, item) {
+					if (item['selected']) {
+						enemy = item;
+						enemyIndex = index;
+					}
+				});
+
+				enemy.hp -= player.damage;
+
+				if (enemy.hp <= 0) {
+					enemies.splice(enemyIndex, 1);
+
+					if (enemies.length > 0) {
+						enemies[0]['selected'] = true;
+					}
 				}
 			}
 		}

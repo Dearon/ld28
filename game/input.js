@@ -17,4 +17,7 @@ function input() {
 	Mousetrap.bind('ctrl', function() {
 		player.selectNextEnemy();
 	});
+	Mousetrap.bind('space', function() {
+		player.attackEnemy();
+	});
 }
