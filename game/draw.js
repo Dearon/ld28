@@ -1,9 +1,13 @@
 draw = {
 	update: function() {
-		this.background();
-		this.minimap();
-		this.player();
-		this.enemies();
+		if (player.hp <= 0) {
+			this.gameover();
+		} else {
+			this.background();
+			this.minimap();
+			this.player();
+			this.enemies();
+		}
 	},
 	background: function() {
 		stage.addChild(bg);
@@ -102,5 +106,16 @@ draw = {
 			hpText.y = 260;
 			stage.addChild(hpText);
 		});
+	},
+	gameover: function() {
+		stage.addChild(bg);
+		var bg = new createjs.Shape();
+		bg.graphics.beginFill('#000').drawRect(STAGE_WIDTH, STAGE_HEIGHT, 0, 0);
+		stage.addChild(bg);
+
+		var hpText = new createjs.Text('Game Over', "50px Arial", "#ff0000");
+		hpText.x = STAGE_WIDTH/3;
+		hpText.y = STAGE_HEIGHT/3;
+		stage.addChild(hpText);
 	}
 }

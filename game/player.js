@@ -85,10 +85,6 @@ function createPlayer() {
 					item.sprite.gotoAndPlay('attack');
 					player.hp -= enemy.damage;
 				});
-
-				if (player.hp <= 0) {
-					console.log('Game Over');
-				}
 			}
 		}
 	}
