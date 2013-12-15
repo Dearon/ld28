@@ -41,7 +41,7 @@ var enemyTools = {
 	witch: function() {
 		var witchSpriteSheet = new createjs.SpriteSheet({
 			framerate: 1,
-			images: ["assets/images/witch.png"],
+			images: ["assets/images/ghost.png"],
 			frames: {width: 96, height: 96, regX: 48, regY: 48},
 			animations: {
 				stand: [0,8,"stand"],
