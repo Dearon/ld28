@@ -17,6 +17,7 @@ function createPlayer() {
 		sprite: playerSprite,
 		x: Math.floor(level.length/2),
 		y: Math.floor(level[0].length/2),
+		hp: 100,
 		damage: 25,
 		move: function(direction) {
 			var directions = levelTools.canMove();
@@ -78,6 +79,15 @@ function createPlayer() {
 					if (enemies.length > 0) {
 						enemies[0]['selected'] = true;
 					}
+				}
+
+				$.each(enemies, function(index, item) {
+					item.sprite.gotoAndPlay('attack');
+					player.hp -= enemy.damage;
+				});
+
+				if (player.hp <= 0) {
+					console.log('Game Over');
 				}
 			}
 		}

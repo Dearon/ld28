@@ -75,6 +75,10 @@ draw = {
 	},
 	player: function() {
 		stage.addChild(player.sprite);
+		var hpText = new createjs.Text(player.hp, "20px Arial", "#ff0000");
+		hpText.x = 385;
+		hpText.y = 350;
+		stage.addChild(hpText);
 	},
 	enemies: function() {
 		var enemies = level[player.y][player.x]['enemies'];
@@ -92,6 +96,11 @@ draw = {
 				arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
 				stage.addChild(arrow);
 			}
+
+			var hpText = new createjs.Text(item.hp, "20px Arial", "#ff0000");
+			hpText.x = 230 + (60 * index)
+			hpText.y = 260;
+			stage.addChild(hpText);
 		});
 	}
 }
