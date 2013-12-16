@@ -14,6 +14,7 @@ items = {
 
 		var chest = {
 			sprite: chestSprite,
+			opened: false,
 		}
 
 		return chest;

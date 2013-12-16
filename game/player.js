@@ -103,9 +103,11 @@ function createPlayer() {
 			}
 
 			if (items.length > 0) {
-				console.log('Ooh items');
 				$.each(items, function(index, item) {
-					item.sprite.gotoAndPlay('open');
+					if (! item.opened) {
+						item.sprite.gotoAndPlay('open');
+						item.opened = true;
+					}
 				});
 			}
 
