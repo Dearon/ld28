@@ -19,12 +19,14 @@ var levelTools = {
 		level[y][x] = {};
 		//Visited.
 		level = this.spider(level, x, y, 100, 5);
+		level = this.createExit(level);
 
 		return level;
 	},
 	spider: function(level, x, y, chance, chanceDecrease) {
 		level[y][x] = {};
 		level[y][x].visited = false;
+		level[y][x].exit = false;
 
 		var width = level.length;
 		var height = level[0].length;
@@ -49,6 +51,20 @@ var levelTools = {
 					}
 				}
 			}
+		}
+
+		return level;
+	},
+	createExit: function(level) {
+		var x = Math.round(Math.random() * level[0].length);
+		var y = Math.round(Math.random() * level.length);
+
+		console.log(x + "- " + y);
+
+		if (level[y][x]) {
+			level[y][x].exit = true;
+		} else {
+			level = this.createExit(level);
 		}
 
 		return level;
