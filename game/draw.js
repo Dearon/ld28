@@ -1,10 +1,15 @@
 draw = {
+	entities: [],
 	update: function() {
 			//Added stage.remove to graphics to create a better gameover look.
 		this.background();
 		this.minimap();
 		this.player();
 		this.enemies();
+
+			//uninitialiseng is alright :/
+		for(var i = 0; i < this.entities.length; i++)
+			this.entities[i].update();
 
 		if (player.hp <= 0) {
 			this.gameover();

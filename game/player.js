@@ -6,7 +6,7 @@ function createPlayer() {
 		animations: {
 			stand: [0,7,"stand"],
 			die: [9, 18, false],
-			attack: [20, 22, "stand"]
+			attack: [18, 20, "stand"]
 		}
 	});
 
@@ -90,6 +90,18 @@ function createPlayer() {
 					item.sprite.gotoAndPlay('attack');
 					player.hp -= enemy.damage;
 				});
+			}
+		},
+		useProbe: function(){
+			for(var i = -1; i < 2; i++) {
+				for(var j = -1; j < 2; j++) {
+				
+					if (player.x + i >= 0 && player.x + i < level.length && 
+						player.y + j >= 0 && player.y + j < level[0].length)
+					{
+						level[player.y+j][player.x+i].visited = true;
+					}
+				}
 			}
 		}
 	}

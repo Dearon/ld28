@@ -26,4 +26,9 @@ function input() {
 		player.attackEnemy();
 		return false;
 	});
+	Mousetrap.bind('shift', function() {
+		player.useProbe();
+		entities.createWhiteOut();
+		return false;
+	});
 }

@@ -82,10 +82,7 @@ var enemyTools = {
 		});
 
 		var waterSprite = new createjs.Sprite(waterSpriteSheet, "stand");
-		waterSprite.onAnimationEnd = function() {
-			console.log('test');
-		}
-
+		
 		var waterMonster = {
 			sprite: waterSprite,
 			hp: 300,
