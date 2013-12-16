@@ -91,8 +91,14 @@ draw = {
 							var color = '#fff';
 						}
 
-						//
-						if(level[y+j][x+i].enemies.length >= 5)
+						//handle icons
+						if(level[y+j][x+i].items.length > 0)
+						{
+							var bitmap = new createjs.Bitmap(contentManager.iconTreasure);
+							bitmap.x = left; bitmap.y = up;
+							stage.addChild(bitmap);
+						}
+						else if(level[y+j][x+i].enemies.length >= 5)
 						{
 							var bitmap = new createjs.Bitmap(contentManager.iconHard);
 							bitmap.x = left; bitmap.y = up;

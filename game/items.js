@@ -6,7 +6,7 @@ items = {
 			frames: {width: 96, height: 96, regX: 48, regY: 48},
 			animations: {
 				idle: [0,0,"idle"],
-				open: [1, 9, "idle"]
+				open: [1, 9, false]
 			}
 		});
 
