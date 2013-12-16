@@ -162,8 +162,12 @@ draw = {
 		//Sets Player to inBattle
 		if(enemies.length > 0)	
 			player.inBattle = true;
-		else
+		else if(player.inBattle == true)
+		{
 			player.inBattle = false;
+			player.hasProbe = true;
+			player.hasPotion = true;
+		}
 
 		$.each(enemies, function(index, item) {
 			item.sprite.x = 240 + (60 * index);

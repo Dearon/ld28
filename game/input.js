@@ -28,7 +28,10 @@ function input() {
 	});
 	Mousetrap.bind('shift', function() {
 		player.useProbe();
-		entities.createWhiteOut();
+		return false;
+	});
+	Mousetrap.bind('p', function() {
+		player.usePotion();
 		return false;
 	});
 }

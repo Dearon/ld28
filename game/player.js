@@ -114,15 +114,31 @@ function createPlayer() {
 			}
 		},
 		useProbe: function(){
-			for(var i = -1; i < 2; i++) {
-				for(var j = -1; j < 2; j++) {
-				
-					if (player.x + i >= 0 && player.x + i < level.length && 
-						player.y + j >= 0 && player.y + j < level[0].length)
-					{
-						level[player.y+j][player.x+i].visited = true;
+			if(this.hasProbe === true) {
+				entities.createWhiteOut();
+				for(var i = -1; i < 2; i++) {
+					for(var j = -1; j < 2; j++) {
+					
+						if (player.x + i >= 0 && player.x + i < level.length && 
+							player.y + j >= 0 && player.y + j < level[0].length)
+						{
+							level[player.y+j][player.x+i].visited = true;
+						}
 					}
 				}
+			}
+			this.hasProbe = false;
+			console.log(this.hasProbe);
+		},
+		usePotion: function(){
+			if(this.hasPotion)
+			{
+				this.hp += 50;
+
+				if(this.hp > 100)
+					this.hp = 100;
+
+				this.hasPotion = false;
 			}
 		}
 	}
