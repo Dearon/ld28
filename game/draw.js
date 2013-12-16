@@ -38,13 +38,15 @@ draw = {
 		var x = player.x - 2;
 		var y = player.y - 2;
 
-		for (var i = 0; i < 5; i++) {
-			for (var j = 0; j < 5; j++) {
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < 10; j++) {
 				left = (STAGE_WIDTH - 125) + (25 * i);
 				up = 10 + (25 * j);
-				if(level[y+j][x+i].visited == true) {
+				
 				if ((y + j) > 0 && (y + j) < level.length && (x + i) > 0 && (x + i) < level[0].length && level[y + j][x + i]) {
-					var directions = levelTools.canMove(x + i, y + j);
+					
+					if(level[y+j][x+i].visited == true) {
+						var directions = levelTools.canMove(x + i, y + j);
 
 						if (directions.up && j > 0) {
 							var block = new createjs.Shape();
@@ -67,18 +69,29 @@ draw = {
 							stage.addChild(block);
 						}
 
-				
-					if ((x + i) == player.x && (y + j) == player.y) {
-						var color = '#ff0000';
-					} else {
-						var color = '#fff';
-					}
 					
-					var block = new createjs.Shape();
-					block.graphics.beginFill(color).drawRect(left, up, 15, 15);
-					stage.addChild(block);
+						if ((x + i) == player.x && (y + j) == player.y) {
+							var color = '#ff0000';
+						} else {
+							var color = '#fff';
+						}
+
+						if(level[y+j][x+i].enemies.length > 0)
+						{
+							var bitmap = new createjs.Bitmap(contentManager.iconNormal);
+							bitmap.x = left; bitmap.y = up;
+							stage.addChild(bitmap);
+						}
+						else
+						{
+							var block = new createjs.Shape();
+							block.graphics.beginFill(color).drawRect(left, up, 15, 15);
+
+							//Evaluate
+							stage.addChild(block);
+						}
+					}
 				}
-			}
 			}
 		}
 	},

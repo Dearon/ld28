@@ -12,7 +12,7 @@ function ContentManager() {
 
     // We have 4 type of enemies, 1 hero & 1 type of tile
 
-    this.imgPlayer = new Image();
+    this.iconNormal = new Image();
     // the background can be created with 3 different layers
     // those 3 layers exist in 3 versions
     this.imgBackgroundLayers = new Array();
@@ -20,7 +20,7 @@ function ContentManager() {
 
     // public method to launch the download process
     this.StartDownload = function () {
-        SetDownloadParameters(this.imgPlayer, "../assets/images/player.png", handleImageLoad, handleImageError);
+        SetDownloadParameters(this.iconNormal, "assets/images/red.png", handleImageLoad, handleImageError);
 
 
     }
