@@ -226,26 +226,29 @@ draw = {
 	},
 	statusBar: function() {
 		var bg = new createjs.Shape();
-		bg.graphics.beginFill('#777').drawRect(0, STAGE_HEIGHT - 35, STAGE_WIDTH, 35);
+		bg.graphics.beginFill('#777').drawRect(0, STAGE_HEIGHT - 30, STAGE_WIDTH, 30);
 		stage.addChild(bg);
 
-		var text = player.hp + ' HP, ';
+		var text = 'You have ' + player.hp + ' HP, ';
+		text += 'you do ' + player.damage + ' damage, ';
 
+		text += 'you have ';
 		if (player.hasPotion) {
 			text += 'one potion and ';
 		} else {
 			text += 'no potion and ';
 		}
 
+		text += 'you have ';
 		if (player.hasProbe) {
 			text += 'one probe.';
 		} else {
 			text += 'no probe.';
 		}
 
-		var statusText = new createjs.Text(text, "20px Courier", "black");
+		var statusText = new createjs.Text(text, "15px Courier", "black");
 		statusText.x = 10;
-		statusText.y = STAGE_HEIGHT - 30;
+		statusText.y = STAGE_HEIGHT - 25;
 		stage.addChild(statusText);
 	},
 	gameover: function() {

@@ -18,6 +18,7 @@ function createPlayer() {
 		sprite: playerSprite,
 		x: Math.floor(level.length/2),
 		y: Math.floor(level[0].length/2),
+		maxhp: 100,
 		hp: 100,
 		damage: 25,
 		inBattle: false,
@@ -107,6 +108,41 @@ function createPlayer() {
 					if (! item.opened) {
 						item.sprite.gotoAndPlay('open');
 						item.opened = true;
+
+						var random = 2;
+
+						if (! player.hasProbe) {
+							random += 1;
+						}
+
+						if (! player.hasPotion) {
+							random += 1;
+						}
+
+						var roll = Math.round(Math.random() * (random - 1) + 1);
+						console.log(roll);
+
+						if (roll == 1) {
+							console.log(player.hp);
+							player.maxhp += 10;
+							player.hp += 10;
+						} else if (roll == 2) {
+							player.damage += 10;
+						} else {
+							if (player.hasProbe && ! player.hasPotion) {
+								player.hasPotion = true;
+							} if (! player.hasProbe && player.hasPotion) {
+								player.hasProbe = true;
+							} else {
+								var secondRoll = Math.round(Math.random() * (2 - 1) + 1);
+
+								if (secondRoll == 1) {
+									player.hasProbe = true;
+								} else {
+									player.hasPotion = true;
+								}
+							}
+						}
 					}
 				});
 			}
@@ -137,8 +173,8 @@ function createPlayer() {
 			{
 				this.hp += 50;
 
-				if(this.hp > 100)
-					this.hp = 100;
+				if(this.hp > this.maxhp)
+					this.hp = this.maxhp;
 
 				this.hasPotion = false;
 			}
