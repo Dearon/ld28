@@ -10,6 +10,8 @@ function init() {
 	enemyTools.generateEnemies();
 	player = createPlayer();
 
+	//Initialise first visited section
+	level[player.y][player.x].visited = true;
 	// Draw any updates that have happened
 	createjs.Ticker.addEventListener("tick", update);
 	// Listen to any inputs

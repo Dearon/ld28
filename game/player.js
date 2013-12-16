@@ -37,6 +37,7 @@ function createPlayer() {
 					this.x += 1;
 				}
 			}
+			level[this.y][this.x].visited = true;
 		},
 		selectNextEnemy: function() {
 			var enemies = level[player.y][player.x]['enemies'];

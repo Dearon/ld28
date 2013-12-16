@@ -16,14 +16,15 @@ var levelTools = {
 		var x = Math.ceil(width / 2);
 		var y = Math.ceil(height / 2);
 
-		level[y][x] = true;
-
+		level[y][x] = {};
+		//Visited.
 		level = this.spider(level, x, y, 100, 5);
 
 		return level;
 	},
 	spider: function(level, x, y, chance, chanceDecrease) {
 		level[y][x] = {};
+		level[y][x].visited = false;
 
 		var width = level.length;
 		var height = level[0].length;
