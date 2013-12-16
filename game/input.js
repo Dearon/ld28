@@ -19,11 +19,11 @@ function input() {
 		return false;
 	});
 	Mousetrap.bind('ctrl', function() {
-		player.selectNextEnemy();
+		player.selectNext();
 		return false;
 	});
 	Mousetrap.bind('space', function() {
-		player.attackEnemy();
+		player.useSelection();
 		return false;
 	});
 	Mousetrap.bind('shift', function() {

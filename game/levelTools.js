@@ -25,6 +25,7 @@ var levelTools = {
 	},
 	spider: function(level, x, y, chance, chanceDecrease) {
 		level[y][x] = {};
+		level[y][x].enemies = [];
 		level[y][x].visited = false;
 		level[y][x].exit = false;
 
@@ -56,12 +57,11 @@ var levelTools = {
 		return level;
 	},
 	createExit: function(level) {
-		var x = Math.round(Math.random() * level[0].length);
-		var y = Math.round(Math.random() * level.length);
-
-		console.log(x + "- " + y);
+		var x = Math.round(Math.random() * (level[0].length - 1));
+		var y = Math.round(Math.random() * (level.length - 1));
 
 		if (level[y][x]) {
+			console.log(x + " - " + y);
 			level[y][x].exit = true;
 		} else {
 			level = this.createExit(level);

@@ -8,9 +8,8 @@ var enemyTools = {
 		{
 			for(var j = 0; j < level[0].length; j++)
 			{
-				if(level[i][j])
+				if(level[i][j] && ! level[i][j].exit)
 				{
-					level[i][j]['enemies'] = [];
 					if(Math.random() <= this.chanceSpawn) 
 					{	
 						if(Math.random() <= this.chanceSpawn)

@@ -4,8 +4,8 @@ function init() {
 	STAGE_HEIGHT = 600;
 
 	contentManager = new ContentManager();
-    contentManager.SetDownloadCompleted(function(){});
-    contentManager.StartDownload();
+	contentManager.SetDownloadCompleted(function(){});
+	contentManager.StartDownload();
 
 	var canvas = document.getElementById("game");
 	stage = new createjs.Stage(canvas);

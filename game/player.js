@@ -38,8 +38,9 @@ function createPlayer() {
 				}
 			}
 			level[this.y][this.x].visited = true;
+			console.log(this.x + " - " + this.y);
 		},
-		selectNextEnemy: function() {
+		selectNext: function() {
 			var enemies = level[player.y][player.x]['enemies'];
 			var next = false;
 
@@ -59,8 +60,9 @@ function createPlayer() {
 				}
 			}
 		},
-		attackEnemy: function() {
+		useSelection: function() {
 			var enemies = level[player.y][player.x]['enemies'];
+			var attack = false;
 
 			if (enemies.length > 0) {
 				var enemy = {};
@@ -70,9 +72,12 @@ function createPlayer() {
 					if (item['selected']) {
 						enemy = item;
 						enemyIndex = index;
+						attack = true;
 					}
 				});
+			}
 
+			if (attack) {
 				enemy.hp -= player.damage;
 
 				if (enemy.hp <= 0) {
@@ -90,6 +95,10 @@ function createPlayer() {
 					item.sprite.gotoAndPlay('attack');
 					player.hp -= enemy.damage;
 				});
+			}
+
+			if (level[player.y][player.x].exit) {
+				console.log('Freedom!');
 			}
 		},
 		useProbe: function(){

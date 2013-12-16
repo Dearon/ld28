@@ -33,7 +33,7 @@ var entities ={
 
 			},
 			remove: function(){
-				console.log(draw.entities.indexOf(this));
+				//console.log(draw.entities.indexOf(this));
 			}
 		}
 		draw.entities.push(whiteOut)

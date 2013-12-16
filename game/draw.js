@@ -3,9 +3,11 @@ draw = {
 	update: function() {
 			//Added stage.remove to graphics to create a better gameover look.
 		this.background();
+		this.exit();
 		this.minimap();
 		this.player();
 		this.enemies();
+		this.selected();
 
 			//uninitialiseng is alright :/
 		for(var i = 0; i < this.entities.length; i++)
@@ -37,6 +39,13 @@ draw = {
 		}
 
 		stage.addChild(bg);
+	},
+	exit: function() {
+		if (level[player.y][player.x].exit) {
+			var block = new createjs.Shape();
+			block.graphics.beginFill('#ff0000').drawRect(525, 375, 50, 50);
+			stage.addChild(block);
+		}
 	},
 	minimap: function() {
 		// The minimap is 5x5 so we'll set x and y to the top-left position of those rooms
@@ -135,7 +144,20 @@ draw = {
 
 			stage.addChild(item.sprite);
 
+			var hpText = new createjs.Text(item.hp, "20px Arial", "#ff0000");
+			hpText.x = 230 + (60 * index)
+			hpText.y = 260;
+			stage.addChild(hpText);
+		});
+	},
+	selected: function() {
+		var enemies = level[player.y][player.x]['enemies'];
+		var selected = false;
+
+		$.each(enemies, function(index, item) {
 			if (item.selected) {
+				selected = true;
+
 				var up = 135;
 				//Sets
 				up -= item.sprite.spriteSheet._regY/2;
@@ -145,12 +167,13 @@ draw = {
 				arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
 				stage.addChild(arrow);
 			}
-
-			var hpText = new createjs.Text(item.hp, "20px Arial", "#ff0000");
-			hpText.x = 230 + (60 * index)
-			hpText.y = 260;
-			stage.addChild(hpText);
 		});
+
+		if (level[player.y][player.x].exit) {
+			var arrow = new createjs.Shape();
+			arrow.graphics.beginFill('#ff0000').drawRect(540, 350, 20, 20);
+			stage.addChild(arrow);
+		}
 	},
 	gameover: function() {
 		var t = new createjs.Shape();
