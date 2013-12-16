@@ -40,7 +40,7 @@ draw = {
 
 		for (var i = 0; i < 10; i++) {
 			for (var j = 0; j < 10; j++) {
-				left = (STAGE_WIDTH - 125) + (25 * i);
+				left = (STAGE_WIDTH - 150) + (25 * i);
 				up = 10 + (25 * j);
 				
 				if ((y + j) > 0 && (y + j) < level.length && (x + i) > 0 && (x + i) < level[0].length && level[y + j][x + i]) {
@@ -71,25 +71,45 @@ draw = {
 
 					
 						if ((x + i) == player.x && (y + j) == player.y) {
-							var color = '#ff0000';
+							var color = '#0066FF';
 						} else {
 							var color = '#fff';
 						}
 
-						if(level[y+j][x+i].enemies.length > 0)
+						//
+						if(level[y+j][x+i].enemies.length >= 5)
+						{
+							var bitmap = new createjs.Bitmap(contentManager.iconHard);
+							bitmap.x = left; bitmap.y = up;
+							stage.addChild(bitmap);
+						}
+						else if(level[y+j][x+i].enemies.length >= 3)
 						{
 							var bitmap = new createjs.Bitmap(contentManager.iconNormal);
 							bitmap.x = left; bitmap.y = up;
 							stage.addChild(bitmap);
 						}
-						else
+						else if(level[y+j][x+i].enemies.length >= 1)
 						{
-							var block = new createjs.Shape();
-							block.graphics.beginFill(color).drawRect(left, up, 15, 15);
-
-							//Evaluate
-							stage.addChild(block);
+							var bitmap = new createjs.Bitmap(contentManager.iconEasy);
+							bitmap.x = left; bitmap.y = up;
+							stage.addChild(bitmap);
 						}
+						
+
+						var block = new createjs.Shape();
+
+						if ((x + i) == player.x && (y + j) == player.y) {
+							var color = '#0066FF';
+							block.graphics.setStrokeStyle(3).beginStroke(color).drawRect(left, up, 15, 15);
+						} else {
+							var color = '#fff';
+							block.graphics.setStrokeStyle(1).beginStroke(color).drawRect(left, up, 15, 15);
+						}
+
+						//Evaluate
+						stage.addChild(block);
+						
 					}
 				}
 			}
