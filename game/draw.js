@@ -7,6 +7,7 @@ draw = {
 		this.minimap();
 		this.player();
 		this.enemies();
+		this.items();
 		this.selected();
 
 			//Entities store effects such as probe light etc. :/
@@ -164,24 +165,40 @@ draw = {
 			stage.addChild(hpText);
 		});
 	},
+	items: function() {
+		var items = level[player.y][player.x]['items'];
+
+		$.each(items, function(index, item) {
+			item.sprite.x = 225;
+			item.sprite.y = 418;
+			stage.addChild(item.sprite);
+		});
+	},
 	selected: function() {
 		var enemies = level[player.y][player.x]['enemies'];
-		var selected = false;
 
-		$.each(enemies, function(index, item) {
-			if (item.selected) {
-				selected = true;
+		if (level[player.y][player.x].enemies.length > 0) {
+			$.each(enemies, function(index, item) {
+				if (item.selected) {
+					selected = true;
 
-				var up = 135;
-				//Sets
-				up -= item.sprite.spriteSheet._regY/2;
-				var left = 230 + (60 * index);
+					var up = 135;
+					//Sets
+					up -= item.sprite.spriteSheet._regY/2;
+					var left = 230 + (60 * index);
 
-				var arrow = new createjs.Shape();
-				arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
-				stage.addChild(arrow);
-			}
-		});
+					var arrow = new createjs.Shape();
+					arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
+					stage.addChild(arrow);
+				}
+			});
+		}
+
+		if (level[player.y][player.x].items.length > 0) {
+			var arrow = new createjs.Shape();
+			arrow.graphics.beginFill('#ff0000').drawRect(215, 375, 20, 20);
+			stage.addChild(arrow);
+		}
 
 		if (level[player.y][player.x].exit) {
 			var arrow = new createjs.Shape();

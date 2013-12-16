@@ -69,7 +69,7 @@ function createPlayer() {
 		},
 		useSelection: function() {
 			var enemies = level[player.y][player.x]['enemies'];
-			var attack = false;
+			var items = level[player.y][player.x]['items'];
 
 			if (enemies.length > 0) {
 				var enemy = {};
@@ -82,9 +82,7 @@ function createPlayer() {
 						attack = true;
 					}
 				});
-			}
 
-			if (attack) {
 				enemy.hp -= player.damage;
 
 				if (enemy.hp <= 0) {
@@ -101,6 +99,13 @@ function createPlayer() {
 				$.each(enemies, function(index, item) {
 					item.sprite.gotoAndPlay('attack');
 					player.hp -= enemy.damage;
+				});
+			}
+
+			if (items.length > 0) {
+				console.log('Ooh items');
+				$.each(items, function(index, item) {
+					item.sprite.gotoAndPlay('open');
 				});
 			}
 

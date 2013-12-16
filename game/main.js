@@ -11,8 +11,10 @@ function init() {
 	stage = new createjs.Stage(canvas);
 
 	level = levelTools.create();
+
 	player = createPlayer();
 	enemyTools.generateEnemies();
+	itemTools.generateItems();
 
 	//Initialise first visited section
 	level[player.y][player.x].visited = true;
