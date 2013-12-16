@@ -16,7 +16,7 @@ draw = {
 		var bg = new createjs.Shape();
 		bg.graphics.beginFill('#BBB').drawRect(STAGE_WIDTH/4, STAGE_HEIGHT/4, 400, 300);
 
-		var directions = levelTools.canMove();
+		var directions = levelTools.canMove(player.x, player.y);
 
 		if (directions.up) {
 			bg.graphics.beginFill('#AAA').drawRect(STAGE_WIDTH/2-50, 0, 100, 150);
@@ -34,46 +34,48 @@ draw = {
 		stage.addChild(bg);
 	},
 	minimap: function() {
-		var x = player.x - 1;
-		var y = player.y - 1;
+		// The minimap is 5x5 so we'll set x and y to the top-left position of those rooms
+		var x = player.x - 2;
+		var y = player.y - 2;
 
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
-				left = (STAGE_WIDTH - 130) + (40 * i);
-				up = 20 + (40 * j);
+		for (var i = 0; i < 5; i++) {
+			for (var j = 0; j < 5; j++) {
+				left = (STAGE_WIDTH - 125) + (25 * i);
+				up = 10 + (25 * j);
 
-				if (level[y + j][x + i]) {
+				if ((y + j) > 0 && (y + j) < level.length && (x + i) > 0 && (x + i) < level[0].length && level[y + j][x + i]) {
+					var directions = levelTools.canMove(x + i, y + j);
+
+					if (directions.up && j > 0) {
+						var block = new createjs.Shape();
+						block.graphics.beginFill('#fff').drawRect(left + 5, up - 10, 5, 10);
+						stage.addChild(block);
+					}
+					if (directions.down && j < 4) {
+						var block = new createjs.Shape();
+						block.graphics.beginFill('#fff').drawRect(left + 5, up + 15, 5, 10);
+						stage.addChild(block);
+					}
+					if (directions.left && i > 0) {
+						var block = new createjs.Shape();
+						block.graphics.beginFill('#fff').drawRect(left - 10, up + 5, 10, 5);
+						stage.addChild(block);
+					}
+					if (directions.right && i < 4) {
+						var block = new createjs.Shape();
+						block.graphics.beginFill('#fff').drawRect(left + 15, up + 5, 10, 5);
+						stage.addChild(block);
+					}
+
+				
 					if ((x + i) == player.x && (y + j) == player.y) {
 						var color = '#ff0000';
-
-						var directions = levelTools.canMove();
-
-						if (directions.up) {
-							var block = new createjs.Shape();
-							block.graphics.beginFill('#fff').drawRect(left + 10, up - 10, 10, 10);
-							stage.addChild(block);
-						}
-						if (directions.down) {
-							var block = new createjs.Shape();
-							block.graphics.beginFill('#fff').drawRect(left + 10, up + 30, 10, 10);
-							stage.addChild(block);
-						}
-						if (directions.left) {
-							var block = new createjs.Shape();
-							block.graphics.beginFill('#fff').drawRect(left - 10, up + 10, 10, 10);
-							stage.addChild(block);
-						}
-						if (directions.right) {
-							var block = new createjs.Shape();
-							block.graphics.beginFill('#fff').drawRect(left + 30, up + 10, 10, 10);
-							stage.addChild(block);
-						}
 					} else {
 						var color = '#fff';
 					}
 					
 					var block = new createjs.Shape();
-					block.graphics.beginFill(color).drawRect(left, up, 30, 30);
+					block.graphics.beginFill(color).drawRect(left, up, 15, 15);
 					stage.addChild(block);
 				}
 			}

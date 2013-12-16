@@ -21,7 +21,7 @@ function createPlayer() {
 		hp: 100,
 		damage: 25,
 		move: function(direction) {
-			var directions = levelTools.canMove();
+			var directions = levelTools.canMove(player.x, player.y);
 
 			if (directions[direction]) {
 				if (direction == 'up') {

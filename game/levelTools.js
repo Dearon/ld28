@@ -52,10 +52,7 @@ var levelTools = {
 
 		return level;
 	},
-	canMove: function() {
-		var x = player.x;
-		var y = player.y;
-
+	canMove: function(x, y) {
 		var directions = {
 			up: false,
 			down: false,
