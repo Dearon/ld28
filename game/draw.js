@@ -92,7 +92,13 @@ draw = {
 						}
 
 						//handle icons
-						if(level[y+j][x+i].items.length > 0)
+						if(level[y+j][x+i].exit)
+						{
+							var bitmap = new createjs.Bitmap(contentManager.iconExit);
+							bitmap.x = left; bitmap.y = up;
+							stage.addChild(bitmap);
+						}
+						else if(level[y+j][x+i].items.length > 0)
 						{
 							var bitmap = new createjs.Bitmap(contentManager.iconTreasure);
 							bitmap.x = left; bitmap.y = up;
