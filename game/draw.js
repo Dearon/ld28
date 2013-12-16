@@ -1,12 +1,14 @@
 draw = {
 	update: function() {
+			//Added stage.remove to graphics to create a better gameover look.
+		this.background();
+		this.minimap();
+		this.player();
+		this.enemies();
+
 		if (player.hp <= 0) {
 			this.gameover();
-		} else {
-			this.background();
-			this.minimap();
-			this.player();
-			this.enemies();
+			createjs.Ticker.setPaused(true);
 		}
 	},
 	background: function() {
@@ -94,6 +96,7 @@ draw = {
 
 			if (item.selected) {
 				var up = 135;
+				//Sets
 				up -= item.sprite.spriteSheet._regY/2;
 				var left = 230 + (60 * index);
 
@@ -109,14 +112,16 @@ draw = {
 		});
 	},
 	gameover: function() {
-		stage.addChild(bg);
-		var bg = new createjs.Shape();
-		bg.graphics.beginFill('#000').drawRect(STAGE_WIDTH, STAGE_HEIGHT, 0, 0);
-		stage.addChild(bg);
+		var t = new createjs.Shape();
+		t.graphics.beginFill('ff0000').drawRect(0, 0,STAGE_WIDTH , STAGE_HEIGHT);
+		t.alpha = 0.5;
+		stage.addChild(t);
 
-		var hpText = new createjs.Text('Game Over', "50px Arial", "#ff0000");
+		var hpText = new createjs.Text('Game Over', "50px Courier", "black");
 		hpText.x = STAGE_WIDTH/3;
 		hpText.y = STAGE_HEIGHT/3;
 		stage.addChild(hpText);
+
+		stage.update();
 	}
 }

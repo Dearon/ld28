@@ -19,7 +19,10 @@ function init() {
 function update(event)
 {
 	//TODO:Player access index.
-	stage.removeAllChildren();
-	draw.update();
-	stage.update();
+	if(!event.paused)
+	{
+		stage.removeAllChildren();
+		draw.update();
+		stage.update();
+	}
 }

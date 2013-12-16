@@ -13,7 +13,7 @@ var enemyTools = {
 					level[i][j]['enemies'] = [];
 					if(Math.random() <= this.chanceSpawn) 
 					{	
-						if(Math.random() <= 0.5)
+						if(Math.random() <= this.chanceSpawn)
 						{
 							var enemy = this.waterMonster();
 							enemy["selected"] = true;
@@ -88,8 +88,8 @@ var enemyTools = {
 
 		var waterMonster = {
 			sprite: waterSprite,
-			hp: 50,
-			damage: 10
+			hp: 300,
+			damage: 50
 		}
 
 		return waterMonster;

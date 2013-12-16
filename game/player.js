@@ -5,7 +5,7 @@ function createPlayer() {
 		frames: {width: 96, height: 96, regX: 48, regY: 48},
 		animations: {
 			stand: [0,7,"stand"],
-			die: [9, 19, false],
+			die: [9, 18, false],
 			attack: [20, 22, "stand"]
 		}
 	});
