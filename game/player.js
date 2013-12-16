@@ -20,21 +20,28 @@ function createPlayer() {
 		y: Math.floor(level[0].length/2),
 		hp: 100,
 		damage: 25,
+		inBattle: false,
+		hasProbe: true,
+		hasPotion: true,
 		move: function(direction) {
 			var directions = levelTools.canMove(player.x, player.y);
-
-			if (directions[direction]) {
-				if (direction == 'up') {
-					this.y -= 1;
-				}
-				if (direction == 'down') {
-					this.y += 1;
-				}
-				if (direction == 'left') {
-					this.x -= 1;
-				}
-				if (direction == 'right') {
-					this.x += 1;
+			if(!player.inBattle) 
+			{
+				if (directions[direction]) 
+				{
+					if (direction == 'up') 
+					{
+						this.y -= 1;
+					}
+					if (direction == 'down') {
+						this.y += 1;
+					}
+					if (direction == 'left') {
+						this.x -= 1;
+					}
+					if (direction == 'right') {
+						this.x += 1;
+					}
 				}
 			}
 			level[this.y][this.x].visited = true;

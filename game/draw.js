@@ -9,7 +9,7 @@ draw = {
 		this.enemies();
 		this.selected();
 
-			//uninitialiseng is alright :/
+			//Entities store effects such as probe light etc. :/
 		for(var i = 0; i < this.entities.length; i++)
 			this.entities[i].update();
 
@@ -105,7 +105,14 @@ draw = {
 						}
 						else if(level[y+j][x+i].enemies.length >= 1)
 						{
-							var bitmap = new createjs.Bitmap(contentManager.iconEasy);
+							var bitmap;
+
+							if(level[y+j][x+i].enemies[0].type === "waterMonster")
+								bitmap = new createjs.Bitmap(contentManager.iconHard);
+							else
+								bitmap = new createjs.Bitmap(contentManager.iconEasy);
+
+							
 							bitmap.x = left; bitmap.y = up;
 							stage.addChild(bitmap);
 						}
@@ -138,6 +145,12 @@ draw = {
 	},
 	enemies: function() {
 		var enemies = level[player.y][player.x]['enemies'];
+
+		if(enemies.length > 0)	
+			player.inBattle = true;
+		else
+			player.inBattle = false;
+
 		$.each(enemies, function(index, item) {
 			item.sprite.x = 240 + (60 * index);
 			item.sprite.y = 210;

@@ -16,6 +16,7 @@ enemies = {
 		}
 
 		var witch = {
+			type: "witch",
 			sprite: witchSprite,
 			hp: 50,
 			damage: 10
@@ -37,6 +38,7 @@ enemies = {
 		var waterSprite = new createjs.Sprite(waterSpriteSheet, "stand");
 		
 		var waterMonster = {
+			type: "waterMonster",
 			sprite: waterSprite,
 			hp: 300,
 			damage: 50

@@ -7,12 +7,12 @@ var enemyTools = {
 		for(var i = 0; i < level.length; i++)
 		{
 			for(var j = 0; j < level[0].length; j++)
-			{
-				if(level[i][j] && ! level[i][j].exit)
+			{											//So the monsters dont spawn where player is.
+				if(level[i][j] && ! level[i][j].exit && !(i == player.x && j == player.y))
 				{
 					if(Math.random() <= this.chanceSpawn) 
 					{	
-						if(Math.random() <= this.chanceSpawn)
+						if(Math.random() <= this.chanceSpawn/2)
 						{
 							var enemy = enemies.waterMonster();
 							enemy["selected"] = true;
