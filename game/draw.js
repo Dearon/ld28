@@ -228,7 +228,7 @@ draw = {
 		bg.graphics.beginFill('#777').drawRect(0, STAGE_HEIGHT - 35, STAGE_WIDTH, 35);
 		stage.addChild(bg);
 
-		var text = 'HP: ' + player.hp + ', ';
+		var text = player.hp + ' HP, ';
 
 		if (player.hasPotion) {
 			text += 'one potion and ';
