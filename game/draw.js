@@ -44,8 +44,9 @@ draw = {
 	},
 	exit: function() {
 		if (level[player.y][player.x].exit) {
-			var block = new createjs.Shape();
-			block.graphics.beginFill('#ff0000').drawRect(525, 375, 50, 50);
+			var block = new createjs.Bitmap(contentManager.imgExit);
+			block.x = STAGE_WIDTH/2 - 32;
+			block.y = 375;
 			stage.addChild(block);
 		}
 	},
@@ -219,7 +220,7 @@ draw = {
 
 		if (level[player.y][player.x].exit) {
 			var arrow = new createjs.Shape();
-			arrow.graphics.beginFill('#ff0000').drawRect(540, 350, 20, 20);
+			arrow.graphics.beginFill('#ff0000').drawRect(STAGE_WIDTH/2 - 5, 375 - 10, 20, 20);
 			stage.addChild(arrow);
 		}
 	},
@@ -259,5 +260,8 @@ draw = {
 		stage.addChild(hpText);
 
 		stage.update();
+	}
+	nextlevel: function() {
+		
 	}
 }
