@@ -9,6 +9,7 @@ draw = {
 		this.enemies();
 		this.items();
 		this.selected();
+		this.statusBar();
 
 			//Entities store effects such as probe light etc. :/
 		for(var i = 0; i < this.entities.length; i++)
@@ -221,6 +222,30 @@ draw = {
 			arrow.graphics.beginFill('#ff0000').drawRect(540, 350, 20, 20);
 			stage.addChild(arrow);
 		}
+	},
+	statusBar: function() {
+		var bg = new createjs.Shape();
+		bg.graphics.beginFill('#777').drawRect(0, STAGE_HEIGHT - 35, STAGE_WIDTH, 35);
+		stage.addChild(bg);
+
+		var text = 'HP: ' + player.hp + ', ';
+
+		if (player.hasPotion) {
+			text += 'one potion and ';
+		} else {
+			text += 'no potion and ';
+		}
+
+		if (player.hasProbe) {
+			text += 'one probe.';
+		} else {
+			text += 'no probe.';
+		}
+
+		var statusText = new createjs.Text(text, "20px Courier", "black");
+		statusText.x = 10;
+		statusText.y = STAGE_HEIGHT - 30;
+		stage.addChild(statusText);
 	},
 	gameover: function() {
 		var t = new createjs.Shape();
