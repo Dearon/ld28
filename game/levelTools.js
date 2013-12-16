@@ -26,6 +26,7 @@ var levelTools = {
 	spider: function(level, x, y, chance, chanceDecrease) {
 		level[y][x] = {};
 		level[y][x].enemies = [];
+		level[y][x].items = [];
 		level[y][x].visited = false;
 		level[y][x].exit = false;
 

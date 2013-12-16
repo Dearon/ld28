@@ -12,6 +12,7 @@ function init() {
 
 	level = levelTools.create();
 	enemyTools.generateEnemies();
+	itemTools.generateItems();
 	player = createPlayer();
 
 	//Initialise first visited section

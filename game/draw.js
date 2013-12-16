@@ -7,6 +7,7 @@ draw = {
 		this.minimap();
 		this.player();
 		this.enemies();
+		this.items();
 		this.selected();
 
 			//uninitialiseng is alright :/
@@ -148,6 +149,15 @@ draw = {
 			hpText.x = 230 + (60 * index)
 			hpText.y = 260;
 			stage.addChild(hpText);
+		});
+	},
+	items: function() {
+		var items = level[player.y][player.x]['items'];
+
+		$.each(items, function(index, item) {
+			item.sprite.x = 225;
+			item.sprite.y = 418;
+			stage.addChild(item.sprite);
 		});
 	},
 	selected: function() {
