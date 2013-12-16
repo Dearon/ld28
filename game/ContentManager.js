@@ -3,7 +3,7 @@ function ContentManager() {
     // have been downloaded
     var ondownloadcompleted;
     // Number of elements to download
-    var NUM_ELEMENTS_TO_DOWNLOAD = 4;
+    var NUM_ELEMENTS_TO_DOWNLOAD = 5;
 
     // setting the callback method
     this.SetDownloadCompleted = function (callbackMethod) {
@@ -14,6 +14,7 @@ function ContentManager() {
     this.iconEasy   = new Image();
     this.iconNormal = new Image();
     this.iconHard   = new Image();
+    this.iconTreasure = new Image();
     this.imgWhiteOut = new Image();
     // the background can be created with 3 different layers
     // those 3 layers exist in 3 versions
@@ -25,6 +26,7 @@ function ContentManager() {
         SetDownloadParameters(this.iconEasy, "assets/images/green.png", handleImageLoad, handleImageError);
         SetDownloadParameters(this.iconNormal, "assets/images/orange.png", handleImageLoad, handleImageError);
         SetDownloadParameters(this.iconHard, "assets/images/red.png", handleImageLoad, handleImageError);
+        SetDownloadParameters(this.iconTreasure, "assets/images/icontreasure.png", handleImageLoad, handleImageError);
         SetDownloadParameters(this.imgWhiteOut, "assets/images/whiteout.png", handleImageLoad, handleImageError);
 
 
