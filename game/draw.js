@@ -94,6 +94,7 @@ draw = {
 
 			if (item.selected) {
 				var up = 135;
+				up -= item.sprite.spriteSheet._regY/2;
 				var left = 230 + (60 * index);
 
 				var arrow = new createjs.Shape();

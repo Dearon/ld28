@@ -1,7 +1,7 @@
 var enemyTools = {
 	hashLevelEnemies: {},
 	enemyTypes: ["witch"],
-	chanceSpawn: 1.0/6.0,
+	chanceSpawn: 2.0/6.0,
 
 	generateEnemies: function() {
 		for(var i = 0; i < level.length; i++)
@@ -11,21 +11,29 @@ var enemyTools = {
 				if(level[i][j])
 				{
 					level[i][j]['enemies'] = [];
-					if(Math.random() > this.chanceSpawn) 
-					{
-						var numberOfEnemies = Math.ceil(Math.random()*6);
-						
-						for(var k = 0; k < numberOfEnemies; k++)
+					if(Math.random() <= this.chanceSpawn) 
+					{	
+						if(Math.random() <= 0.5)
 						{
-							var enemy = this.createEnemy();
-							
-							if (k == 0) {
-								enemy['selected'] = true;
-							} else {
-								enemy['selected'] = false;
-							}
-
+							var enemy = this.waterMonster();
+							enemy["selected"] = true;
 							level[i][j]['enemies'].push(enemy);
+						}
+						else	{
+							var numberOfEnemies = Math.ceil(Math.random()*6);
+							
+							for(var k = 0; k < numberOfEnemies; k++)
+							{
+								var enemy = this.createEnemy();
+								
+								if (k == 0) {
+									enemy['selected'] = true;
+								} else {
+									enemy['selected'] = false;
+								}
+
+								level[i][j]['enemies'].push(enemy);
+							}
 						}
 					}
 				}
@@ -61,5 +69,29 @@ var enemyTools = {
 		}
 
 		return witch;
+	},
+	waterMonster: function() {
+		var waterSpriteSheet = new createjs.SpriteSheet({
+			framerate: 1,
+			images: ["assets/images/watermonster.png"],
+			frames: {width: 288, height: 288, regX: 288/2, regY: 288/2},
+			animations: {
+				stand: [0,11,"stand"],
+				attack: [12, 22, "stand"]
+			}
+		});
+
+		var waterSprite = new createjs.Sprite(waterSpriteSheet, "stand");
+		waterSprite.onAnimationEnd = function() {
+			console.log('test');
+		}
+
+		var waterMonster = {
+			sprite: waterSprite,
+			hp: 50,
+			damage: 10
+		}
+
+		return waterMonster;
 	}
 };
