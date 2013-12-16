@@ -112,7 +112,7 @@ draw = {
 							else
 								bitmap = new createjs.Bitmap(contentManager.iconEasy);
 
-							
+
 							bitmap.x = left; bitmap.y = up;
 							stage.addChild(bitmap);
 						}
@@ -146,6 +146,7 @@ draw = {
 	enemies: function() {
 		var enemies = level[player.y][player.x]['enemies'];
 
+		//Sets Player to inBattle
 		if(enemies.length > 0)	
 			player.inBattle = true;
 		else
