@@ -7,6 +7,8 @@ function init() {
 	contentManager.SetDownloadCompleted(function(){});
 	contentManager.StartDownload();
 
+	createjs.Sound.registerSound("assets/audio/attack.wav", "attackSound");
+
 	var canvas = document.getElementById("game");
 	stage = new createjs.Stage(canvas);
 
