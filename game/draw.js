@@ -9,7 +9,6 @@ draw = {
 		this.enemies();
 		this.items();
 		this.selected();
-		this.statusBar();
 		this.UserInterface();
 
 			//Entities store effects such as probe light etc. :/
@@ -232,70 +231,43 @@ draw = {
 		
 		}
 	},
-	statusBar: function() {
-		var bg = new createjs.Shape();
-		bg.graphics.beginFill('#777').drawRect(0, STAGE_HEIGHT - 30, STAGE_WIDTH, 30);
-		stage.addChild(bg);
-
-		var text = 'You have ' + player.hp + ' HP, ';
-		text += 'you do ' + player.damage + ' damage, ';
-
-		text += 'you have ';
-		if (player.hasPotion) {
-			text += 'one potion and ';
-		} else {
-			text += 'no potion and ';
-		}
-
-		text += 'you have ';
-		if (player.hasProbe) {
-			text += 'one probe.';
-		} else {
-			text += 'no probe.';
-		}
-
-		var statusText = new createjs.Text(text, "15px Courier", "black");
-		statusText.x = 10;
-		statusText.y = STAGE_HEIGHT - 25;
-		stage.addChild(statusText);
-	},
 	UserInterface: function() {
 		//Probe
 		var probe = new createjs.Bitmap(contentManager.iconProbe);
 		probe.x = 0;
-		probe.y = STAGE_HEIGHT - 96;
+		probe.y = STAGE_HEIGHT - 56;
 		stage.addChild(probe);
 
 		var probeAmount = (player.hasProbe ? "1" : "0");
 		var probeText = new createjs.Text('Probe Amount: '+probeAmount, "20px Courier", "#00FF00");
 		probeText.x += 64;
-		probeText.y = STAGE_HEIGHT - 75;
+		probeText.y = STAGE_HEIGHT - 35;
 
 		stage.addChild(probeText);
 
 		var probe = new createjs.Bitmap(contentManager.iconPotion);
 		probe.x = 0;
-		probe.y = STAGE_HEIGHT - 96 - 32;
+		probe.y = STAGE_HEIGHT - 61 - 32;
 		stage.addChild(probe);
 
 		var potAmount = (player.hasPotion ? "1" : "0");
 		var probeText = new createjs.Text('Probe Amount: '+potAmount, "20px Courier", "#00FF00");
 		probeText.x += 64;
-		probeText.y = STAGE_HEIGHT - 75 -32;
+		probeText.y = STAGE_HEIGHT - 40 -32;
 
 		stage.addChild(probeText);
 
 		var playerHP = player.hp+"/"+player.maxhp
 		var probeText = new createjs.Text('HP: '+playerHP, "20px Courier", "#00FF00");
 		probeText.x += 64;
-		probeText.y = STAGE_HEIGHT - 75 -32*2;
+		probeText.y = STAGE_HEIGHT - 40 -32*2;
 
 		stage.addChild(probeText);
 
 		var playerDMG = player.damage
 		var probeText = new createjs.Text('ATTK: '+playerDMG, "20px Courier", "#00FF00");
 		probeText.x += 64;
-		probeText.y = STAGE_HEIGHT - 75 -32*3;		
+		probeText.y = STAGE_HEIGHT - 40 -32*3;		
 		stage.addChild(probeText);
 
 	},
