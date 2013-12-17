@@ -239,7 +239,7 @@ draw = {
 		stage.addChild(probe);
 
 		var probeAmount = (player.hasProbe ? "1" : "0");
-		var probeText = new createjs.Text('Probe Amount: '+probeAmount, "20px Courier", "#00FF00");
+		var probeText = new createjs.Text('Probes:  '+probeAmount, "20px Courier", "#00FF00");
 		probeText.x += 64;
 		probeText.y = STAGE_HEIGHT - 35;
 
@@ -251,7 +251,7 @@ draw = {
 		stage.addChild(probe);
 
 		var potAmount = (player.hasPotion ? "1" : "0");
-		var probeText = new createjs.Text('Probe Amount: '+potAmount, "20px Courier", "#00FF00");
+		var probeText = new createjs.Text('Potions: '+potAmount, "20px Courier", "#00FF00");
 		probeText.x += 64;
 		probeText.y = STAGE_HEIGHT - 40 -32;
 
