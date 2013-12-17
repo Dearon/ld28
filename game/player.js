@@ -14,8 +14,19 @@ function createPlayer() {
 	playerSprite.x = STAGE_WIDTH/2;
 	playerSprite.y = STAGE_HEIGHT/2;
 
+	var pointerSpriteSheet = new createjs.SpriteSheet({
+		framerate: 1,
+		images: ["assets/images/pointer.png"],
+		frames: {width: 64, height: 64, regX: 24, regY: 16},
+		animations: {
+			point: [0,9,"point"]
+		}
+	})
+	var pointerSprite = new createjs.Sprite(pointerSpriteSheet, "point");
+	pointerSprite.scaleX = pointerSprite.scaleY = 1.5;
 	var player = {
 		sprite: playerSprite,
+		pointer: pointerSprite,
 		x: Math.floor(level.length/2),
 		y: Math.floor(level[0].length/2),
 		maxhp: 100,

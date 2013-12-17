@@ -208,7 +208,9 @@ draw = {
 
 					var arrow = new createjs.Shape();
 					arrow.graphics.beginFill('#ff0000').drawRect(left, up, 20, 20);
-					stage.addChild(arrow);
+					player.pointer.x = left;
+					player.pointer.y = up
+					stage.addChild(player.pointer);
 				}
 			});
 		}
@@ -216,13 +218,18 @@ draw = {
 		if (level[player.y][player.x].items.length > 0) {
 			var arrow = new createjs.Shape();
 			arrow.graphics.beginFill('#ff0000').drawRect(215, 375, 20, 20);
-			stage.addChild(arrow);
+			player.pointer.x = 215;
+			player.pointer.y = 375;
+			stage.addChild(player.pointer);
 		}
 
 		if (level[player.y][player.x].exit) {
 			var arrow = new createjs.Shape();
 			arrow.graphics.beginFill('#ff0000').drawRect(STAGE_WIDTH/2 - 5, 375 - 10, 20, 20);
-			stage.addChild(arrow);
+			player.pointer.x = STAGE_WIDTH/2 - 5;
+			player.pointer.y = 375 - 10;
+			stage.addChild(player.pointer);
+		
 		}
 	},
 	statusBar: function() {
