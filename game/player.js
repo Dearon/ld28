@@ -85,6 +85,8 @@ function createPlayer() {
 					}
 				});
 
+				createjs.Sound.play("attackSound");
+
 				enemy.hp -= player.damage;
 
 				if (enemy.hp <= 0) {

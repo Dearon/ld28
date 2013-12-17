@@ -7,6 +7,8 @@ function init() {
 	contentManager.SetDownloadCompleted(function(){});
 	contentManager.StartDownload();
 
+	createjs.Sound.registerSound("assets/audio/attack.wav", "attackSound");
+
 	var canvas = document.getElementById("game");
 	stage = new createjs.Stage(canvas);
 
@@ -15,6 +17,7 @@ function init() {
 	player = createPlayer();
 	enemyTools.generateEnemies();
 	itemTools.generateItems();
+
 	//Initialise first visited section
 	level[player.y][player.x].visited = true;
 	// Draw any updates that have happened

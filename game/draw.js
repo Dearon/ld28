@@ -10,6 +10,7 @@ draw = {
 		this.items();
 		this.selected();
 		this.statusBar();
+		this.UserInterface();
 
 			//Entities store effects such as probe light etc. :/
 		for(var i = 0; i < this.entities.length; i++)
@@ -251,6 +252,46 @@ draw = {
 		statusText.y = STAGE_HEIGHT - 25;
 		stage.addChild(statusText);
 	},
+	UserInterface: function() {
+		//Probe
+		var probe = new createjs.Bitmap(contentManager.iconProbe);
+		probe.x = 0;
+		probe.y = STAGE_HEIGHT - 96;
+		stage.addChild(probe);
+
+		var probeAmount = (player.hasProbe ? "1" : "0");
+		var probeText = new createjs.Text('Probe Amount: '+probeAmount, "20px Courier", "#00FF00");
+		probeText.x += 64;
+		probeText.y = STAGE_HEIGHT - 75;
+
+		stage.addChild(probeText);
+
+		var probe = new createjs.Bitmap(contentManager.iconPotion);
+		probe.x = 0;
+		probe.y = STAGE_HEIGHT - 96 - 32;
+		stage.addChild(probe);
+
+		var potAmount = (player.hasPotion ? "1" : "0");
+		var probeText = new createjs.Text('Probe Amount: '+potAmount, "20px Courier", "#00FF00");
+		probeText.x += 64;
+		probeText.y = STAGE_HEIGHT - 75 -32;
+
+		stage.addChild(probeText);
+
+		var playerHP = player.hp+"/"+player.maxhp
+		var probeText = new createjs.Text('HP: '+playerHP, "20px Courier", "#00FF00");
+		probeText.x += 64;
+		probeText.y = STAGE_HEIGHT - 75 -32*2;
+
+		stage.addChild(probeText);
+
+		var playerDMG = player.damage
+		var probeText = new createjs.Text('ATTK: '+playerDMG, "20px Courier", "#00FF00");
+		probeText.x += 64;
+		probeText.y = STAGE_HEIGHT - 75 -32*3;		
+		stage.addChild(probeText);
+
+	},
 	gameover: function() {
 		var t = new createjs.Shape();
 		t.graphics.beginFill('ff0000').drawRect(0, 0,STAGE_WIDTH , STAGE_HEIGHT);
@@ -262,6 +303,12 @@ draw = {
 		hpText.y = STAGE_HEIGHT/3;
 		stage.addChild(hpText);
 
+		var scoreCalculator = new createjs.Text("Score: "+player.score, "50px Courier", "#00FF00");
+		scoreCalculator.x = STAGE_WIDTH/3 - 100;
+		scoreCalculator.y = STAGE_HEIGHT/3 + 100;
+		stage.addChild(scoreCalculator);
+
+		stage.update();
 		stage.update();
 	},
 	nextlevel: function() {
@@ -276,7 +323,7 @@ draw = {
 		stage.addChild(hpText);
 
 
-		var scoreCalculator = new createjs.Text("Score: "+player.score, "50px Courier", "green");
+		var scoreCalculator = new createjs.Text("Score: "+player.score, "50px Courier", "#00FF00");
 		scoreCalculator.x = STAGE_WIDTH/3 - 100;
 		scoreCalculator.y = STAGE_HEIGHT/3 + 100;
 		stage.addChild(scoreCalculator);
