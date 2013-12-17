@@ -15,7 +15,6 @@ function init() {
 	player = createPlayer();
 	enemyTools.generateEnemies();
 	itemTools.generateItems();
-
 	//Initialise first visited section
 	level[player.y][player.x].visited = true;
 	// Draw any updates that have happened

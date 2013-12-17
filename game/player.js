@@ -24,6 +24,7 @@ function createPlayer() {
 		inBattle: false,
 		hasProbe: true,
 		hasPotion: true,
+		score: 0,
 		move: function(direction) {
 			var directions = levelTools.canMove(player.x, player.y);
 			if(!player.inBattle) 
@@ -88,7 +89,8 @@ function createPlayer() {
 
 				if (enemy.hp <= 0) {
 					enemies.splice(enemyIndex, 1);
-
+					//calculate score:
+					player.score += 1;
 					if (enemies.length > 0) {
 						enemies[0]['selected'] = true;
 					}
@@ -148,7 +150,7 @@ function createPlayer() {
 			}
 
 			if (level[player.y][player.x].exit) {
-				console.log('Freedom!');
+				draw.nextlevel()
 			}
 		},
 		useProbe: function(){

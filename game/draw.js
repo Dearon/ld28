@@ -263,8 +263,25 @@ draw = {
 		stage.addChild(hpText);
 
 		stage.update();
-	}
+	},
 	nextlevel: function() {
-		
+		var t = new createjs.Shape();
+		t.graphics.beginFill('00000').drawRect(0, 0,STAGE_WIDTH , STAGE_HEIGHT);
+		t.alpha = 0.75;
+		stage.addChild(t);
+
+		var hpText = new createjs.Text('You win!', "50px Courier", "Blue");
+		hpText.x = STAGE_WIDTH/3;
+		hpText.y = STAGE_HEIGHT/3;
+		stage.addChild(hpText);
+
+
+		var scoreCalculator = new createjs.Text("Score: "+player.score, "50px Courier", "green");
+		scoreCalculator.x = STAGE_WIDTH/3 - 100;
+		scoreCalculator.y = STAGE_HEIGHT/3 + 100;
+		stage.addChild(scoreCalculator);
+
+		stage.update();
+		createjs.Ticker.setPaused(true)
 	}
 }
